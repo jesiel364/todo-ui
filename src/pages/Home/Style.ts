@@ -69,11 +69,15 @@ export const Header = styled.div`
 `;
 
 export const List = styled.div`
-
+  overflow-y: scroll;
+  margin-top: 110px;
+  padding-top: 10px;
     .item{
         margin: 25px 20px;
-        padding: 10px 12px;
+        padding: 10px;
+        padding-top: 5px;
         background-color: #FFFFFF;
+        // background-color: red;
         border-radius: 6px;
     }
 
