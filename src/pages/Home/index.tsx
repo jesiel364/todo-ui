@@ -1,5 +1,6 @@
 import { Wrapper, Card, Container, List } from "./Style";
 import { ViewController } from "./viewController";
+import {Link} from 'react-router-dom'
 
 import Bell from '/src/assets/bell.svg'
 import Header from '/src/components/Header/index'
@@ -16,12 +17,15 @@ function Home() {
     avatar="https://mui.com/static/images/avatar/1.jpg"
    />
 
-
+        
         <List>
+        <Link to="/task/">
           <div className="item">
                 <p>Aprender fluxo UI</p>
                 <span>2d</span>
             </div>
+          </Link>
+        
             <div className="item">
                 <p>Treinar interfaces no figma</p>
                 <span>7d</span>

@@ -76,9 +76,19 @@ export const List = styled.div`
         margin: 25px 20px;
         padding: 10px;
         padding-top: 5px;
+        padding-bottom: 5px;
         background-color: #FFFFFF;
         // background-color: red;
         border-radius: 6px;
+        font-size : 20px;
+        display: flex;
+        justify-content : space-between ;
+        
+        span{
+          margin-top: auto;
+          margin-bottom: 16px;
+          color: #9f9f9f ;
+        }
     }
 
 `
