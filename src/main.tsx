@@ -1,7 +1,8 @@
 import React from 'react'
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+
 import { GlobalStyle } from './Global'
 import '@fontsource/montserrat/300.css';
 import '@fontsource/montserrat/400.css';
@@ -20,19 +21,18 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/task',
+        path: '/detail/:id',
         element: <Detail />,
       },
-    
     ]
   },
 
-] )
+])
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+   <GlobalStyle />
     <RouterProvider router={router} />
-    <GlobalStyle />
    
-  </React.StrictMode>,
+  </React.StrictMode>
 )

@@ -4,6 +4,12 @@ export const Container = styled.div`
 
   background: #f1f5f8;
   min-height: 100vh;
+  
+  a{
+    text-decoration: none;
+          color: unset;
+  }
+  
 `;
 
 export const Wrapper = styled.div`
@@ -29,7 +35,7 @@ export const Wrapper = styled.div`
 export const Card = styled.div`
   padding: 8px;
   border-radius: 8px;
-
+  text-decoration: none;
   background-color: #fff;
 
   .task_title {
@@ -84,10 +90,17 @@ export const List = styled.div`
         display: flex;
         justify-content : space-between ;
         
+        text-decoration: none;
+        
         span{
           margin-top: auto;
           margin-bottom: 16px;
           color: #9f9f9f ;
+        }
+        
+        a{
+          text-decoration: none;
+          color: unset;
         }
     }
 

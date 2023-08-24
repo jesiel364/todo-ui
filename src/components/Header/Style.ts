@@ -6,18 +6,32 @@ export const HeaderStyle = styled.div`
   min-width : 300px;
   border-radius: 0px 0px 20px 20px;
   background: #f1f5f8;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
   padding: 25px;
   padding-bottom: 10px;position: fixed; top: 0; left: 0; right: 0;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   
-  .title {
+  .title_left {
     font-size: 25px;
     font-weight: 700;
     color: #000;
 
+    margin-bottom: 0;
+  }
+  .title_center {
+    font-size: 25px;
+    font-weight: 700;
+    color: #000;
+    text-align : center;
+    margin-bottom: 0;
+  }
+  .title_right {
+    font-size: 25px;
+    font-weight: 700;
+    color: #000;
+text-align : right; 
     margin-bottom: 0;
   }
 

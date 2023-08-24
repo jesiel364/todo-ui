@@ -13,18 +13,19 @@ function Home() {
         <Container>
    <Header
     title="Minhas tarefas"
-    img={Bell}
+    iconRight={Bell}
     avatar="https://mui.com/static/images/avatar/1.jpg"
    />
+   
 
         
         <List>
-        <Link to="/task/">
+       
           <div className="item">
                 <p>Aprender fluxo UI</p>
                 <span>2d</span>
             </div>
-          </Link>
+          
         
             <div className="item">
                 <p>Treinar interfaces no figma</p>
@@ -33,10 +34,12 @@ function Home() {
         
         {
           viewController.tasks.map(task => (
-            <div key="task.id" className="item">
+          <Link key="task.id" to={"detail/" + task.body}>
+            <div  className="item">
                 <p>{task.body}</p>
                 <span>2d</span>
             </div>
+            </Link>
           ))
         }
           
