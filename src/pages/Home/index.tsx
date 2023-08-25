@@ -21,22 +21,15 @@ function Home() {
         
         <List>
        
-          <div className="item">
-                <p>Aprender fluxo UI</p>
-                <span>2d</span>
-            </div>
-          
-        
-            <div className="item">
-                <p>Treinar interfaces no figma</p>
-                <span>7d</span>
-            </div>
         
         {
-          viewController.tasks.map(task => (
+          viewController.tarefas.map(task => (
           <Link key="task.id" to={"detail/" + task.body}>
             <div  className="item">
-                <p>{task.body}</p>
+                <p>{
+                task.body.length > 10 ? task.body.substring(0,34) : task.body
+                  
+                }</p>
                 <span>2d</span>
             </div>
             </Link>

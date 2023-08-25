@@ -1,5 +1,7 @@
 import { useState } from "react"
-import {v4 as uuidv4} from 'uuid'  
+import {v4 as uuidv4} from 'uuid'
+import { useSelector, useDispatch} from 'react-redux'
+import {AppState, AppDispatch } from '../redux/tasks'
 
 interface TaskProps {
     id: number | string
@@ -8,9 +10,12 @@ interface TaskProps {
 }
 
 export const ViewController = () =>{
+
+  const dispatch: AppDispatch = useDispatch()
+  const tarefas = useSelector((state: AppState) => state.tasks);
     const [tasks, setTasks] = useState<TaskProps[]>([
         {
-        id: uuidv4(),
+        id: 1,
         title: 'This is an test',
         body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quam quas, officiis tempore fuga ab perspiciatis fugiat doloribus, perferendis consectetur porro, aut placeat asperiores dicta facilis libero in corporis magnam!'
     },
@@ -41,6 +46,6 @@ export const ViewController = () =>{
     },
 ])
     return {
-        tasks
+        tasks, tarefas
     }
 }

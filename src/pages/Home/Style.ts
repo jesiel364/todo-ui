@@ -39,7 +39,7 @@ export const Card = styled.div`
   background-color: #fff;
 
   .task_title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
   }
 
@@ -76,6 +76,7 @@ export const Header = styled.div`
 
 export const List = styled.div`
   overflow-y: scroll;
+  padding: 10px;
   margin-top: 110px;
   padding-top: 10px;
     .item{
@@ -86,7 +87,7 @@ export const List = styled.div`
         background-color: #FFFFFF;
         // background-color: red;
         border-radius: 6px;
-        font-size : 20px;
+        font-size : 18px;
         display: flex;
         justify-content : space-between ;
         

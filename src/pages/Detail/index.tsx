@@ -2,13 +2,20 @@ import {DetailContainer, Wrapper} from "./style"
 import Header from '/src/components/Header/index'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useParams } from "react-router-dom";
+import React from 'react'
 
 const Detail = () => {
+
+const ref = React.useRef<HTMLDivElement>(null);
+React.useEffect(() => {
+    (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
+   
+  },[] );
   
   const t = "Aprender fluxo UI"
   const {id} = useParams()
   return (
-  <DetailContainer href="1">
+  <DetailContainer >
   <Header
   customStyle={
     {
@@ -37,7 +44,7 @@ const Detail = () => {
     
     
   }/>
-  <Wrapper>
+  <Wrapper ref={ref}  >
      <p>{id}</p>
   
   </Wrapper>
