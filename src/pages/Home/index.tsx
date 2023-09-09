@@ -1,7 +1,7 @@
 import { Wrapper, Card, Container, List } from "./Style";
 import { ViewController } from "./viewController";
 import {Link} from 'react-router-dom'
-
+import NewTaskModal from '/src/components/NewTaskModal/index'
 import Bell from '/src/assets/bell.svg'
 import Header from '/src/components/Header/index'
 
@@ -17,15 +17,20 @@ function Home() {
     avatar="https://mui.com/static/images/avatar/1.jpg"
    />
    
-
+<NewTaskModal
+  data={<p>New</p>}
+/>
         
         <List>
-       
+     
         
         {
           viewController.tarefas.map(task => (
           <Link key="task.id" to={"detail/" + task.body}>
+          
+          
             <div  className="item">
+              
                 <p>{
                 task.body.length > 10 ? task.body.substring(0,34) : task.body
                   
@@ -38,6 +43,9 @@ function Home() {
           
 
         </List>
+        
+        {JSON.stringify(viewController.isOpen)}
+       <button onClick={e => viewController.utils.actions.isOpen()} >teste</button>
   
     </Container>
     

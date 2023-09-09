@@ -1,8 +1,10 @@
 import { configureStore, combineReducers} from '@reduxjs/toolkit'
 import tasks from './tasks'
+import utils from './utils'
 
 const rootRecucer = combineReducers({
-  tasks: tasks.reducer
+  tasks: tasks.reducer,
+  utils: utils.reducer,
 })
 
 const store = configureStore({

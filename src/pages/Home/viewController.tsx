@@ -1,7 +1,9 @@
 import { useState } from "react"
 import {v4 as uuidv4} from 'uuid'
 import { useSelector, useDispatch} from 'react-redux'
-import {AppState, AppDispatch } from '../redux/tasks'
+import {AppState, AppDispatch } from '../redux/store'
+import utils from '/src/redux/utils'
+import tasks from '/src/redux/tasks'
 
 interface TaskProps {
     id: number | string
@@ -13,39 +15,13 @@ export const ViewController = () =>{
 
   const dispatch: AppDispatch = useDispatch()
   const tarefas = useSelector((state: AppState) => state.tasks);
-    const [tasks, setTasks] = useState<TaskProps[]>([
-        {
-        id: 1,
-        title: 'This is an test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quam quas, officiis tempore fuga ab perspiciatis fugiat doloribus, perferendis consectetur porro, aut placeat asperiores dicta facilis libero in corporis magnam!'
-    },
-        {
-        id: uuidv4(),
-        title: 'This is an test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quam quas, officiis tempore fuga ab perspiciatis fugiat doloribus, perferendis consectetur porro, aut placeat asperiores dicta facilis libero in corporis magnam!'
-    },
-        {
-        id: uuidv4(),
-        title: 'This is an test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quam quas, officiis tempore fuga ab perspiciatis fugiat doloribus, perferendis consectetur porro, aut placeat asperiores dicta facilis libero in corporis magnam!'
-    },
-        {
-        id: uuidv4(),
-        title: 'This is an test',
-        body: 'klçklhf hgfhlfgh fghgfh'
-    },
-        {
-        id: uuidv4(),
-        title: 'This is an test',
-        body: 'klçklhf hgfhlfgh fghgfh'
-    },
-        {
-        id: uuidv4(),
-        title: 'This is an test',
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quam quas, officiis tempore fuga ab perspiciatis fugiat doloribus, perferendis consectetur porro, aut placeat asperiores dicta facilis libero in corporis magnam!'
-    },
-])
+  const isOpen = useSelector((state: AppState ) => state.utils)
+ 
+   
+  
+  
+  
     return {
-        tasks, tarefas
+        tasks, tarefas, utils, isOpen
     }
 }

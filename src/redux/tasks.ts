@@ -1,4 +1,4 @@
-import {v4 as uuidv4} from 'uuid/v4'
+import { v4 as uuidv4 } from 'uuid';
 import {createSlice, payloadAction} from "@reduxjs/toolkit"
 
 export interface Task {
@@ -17,7 +17,11 @@ const tasks = createSlice({
   reducers: {
     todos: (state, action: payloadAction<string>, ) => {
       return state
-    }
+    },
+    addTodo: (state, action: PayloadAction<string>) => {
+      state.push({ id: uuidv4(), body: action.payload, completed: false });
+      return state;
+    }, 
   }
 })
 
