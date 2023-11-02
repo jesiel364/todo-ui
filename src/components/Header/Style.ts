@@ -12,6 +12,7 @@ export const HeaderStyle = styled.div`
   z-index: 9999;
   display: flex;
   flex-direction: column;
+  margin-bottom: 60px;
   
   .title_left {
     font-size: 25px;

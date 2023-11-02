@@ -27,7 +27,11 @@ function refreshMessages(): MessageExample[] {
   );
 }
 
-export default function FixedBottomNavigation() {
+interface BottomNavProps {
+  addTodoFunc: any
+}
+
+export default function FixedBottomNavigation({addTodoFunc}: BottomNavProps) {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
   const [messages, setMessages] = React.useState(() => refreshMessages());
@@ -83,7 +87,7 @@ export default function FixedBottomNavigation() {
           </Link>
      <IconButton
      onClick={(event) => {
-            setValue(2);
+            addTodoFunc()
           }} aria-label="icon" >
   <Person4Icon sx={
      value === 2 ? 

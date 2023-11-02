@@ -1,28 +1,37 @@
 import { useState } from "react"
-import {v4 as uuidv4} from 'uuid'
 import { useSelector, useDispatch} from 'react-redux'
 import {AppState, AppDispatch } from '../../redux/store'
-import utils from '../../redux/store'
+// import utils from '../../redux/store'
 import tasks from '../../redux/tasks'
 
-interface TaskProps {
-    id: number | string
-    title: string
-    body: string
-}
+// interface TaskProps {
+//     id: number | string
+//     title: string
+//     body: string
+// }
 
 export const ViewController = () =>{
-
+    const [open, setOpen] = useState(false)
+    const [todo, setTodo] = useState<any>()
   const dispatch: AppDispatch = useDispatch()
-  const tarefas = useSelector((state: AppState) => state.tasks);
-  const addTask = useSelector((state: AppState) => state.addTodo);
-  const isOpen = useSelector((state: AppState ) => state.utils)
+  const Tasks = useSelector((state: AppState) => state.tasks);
+  
+  const addTask = (e: any) => {
+    e.preventDefault()
+    dispatch(tasks.actions.addTodo(todo))
+    setTodo("")
+  }
  
    
   
   
   
     return {
-        tasks, tarefas, utils, isOpen
+        todo,
+        setTodo,
+        addTask, 
+        Tasks,
+        open,
+        setOpen
     }
 }

@@ -6,8 +6,8 @@ import Bell from '/src/assets/bell.svg'
 import Header from "../../components/Header";
 
 function Home() {
-  const viewController = ViewController();
-  console.log(viewController.tarefas);
+  const {Tasks, todo, setTodo, addTask, open, setOpen} = ViewController();
+  console.log(Tasks);
 
   return (
         <Container>
@@ -16,16 +16,35 @@ function Home() {
     iconRight={Bell}
     avatar="https://mui.com/static/images/avatar/1.jpg"
    />
+
    
-<NewTaskModal
-  data={<p>New</p>}
-/>
+
+
         
         <List>
-     
+        <NewTaskModal
+  open={open}
+  setIsOpen={(e:boolean) => setOpen(e)}
+  data={
+    <>
+  <p>New</p>
+
+  </>
+  }
+/>
+          <form onSubmit={(e) => addTask(e)}>
+        <input 
+        
+        value={todo}
+        style={{
+          marginTop: 16
+        }} onChange={(e) => setTodo(e.currentTarget.value)} />
+
+        <button >Enviar</button>
+        </form>
         
         {
-          viewController.tarefas.map(task => (
+        Tasks.map(task => (
           <Link key="task.id" to={"detail/" + task.body}>
           
           
@@ -44,8 +63,8 @@ function Home() {
 
         </List>
         
-        {JSON.stringify(viewController.isOpen)}
-       <button onClick={e => viewController.utils.actions.isOpen()} >teste</button>
+        {/* {JSON.stringify(Tasks)} */}
+       {/* <button onClick={e => viewController.utils.actions.isOpen()} >teste</button> */}
   
     </Container>
     

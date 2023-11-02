@@ -1,27 +1,45 @@
 import * as S from './style'
 import Modal from "react-modal";
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import { AppDispatch, AppState } from '../../redux/store';
+import { useSelector, useDispatch} from 'react-redux'
+import utils from '../../redux/utils';
 
 interface ModalProps {
-  open?: boolean;
+  open: boolean;
+  setIsOpen: any
   text?: string;
   data?: any;
 }
-const NewTaskModal: React.FC<ModalProps> = ({data}) =>{
+const NewTaskModal = ({data, open, setIsOpen, text}:ModalProps) =>{
 
-  const [isOpen, setIsOpen] = useState(false)
-  
-  function closeModal(){
-    setIsOpen(false)
+  const dispatch: AppDispatch = useDispatch()
+  const isOpen = useSelector((state: AppState) => state.utils);
+
+
+  const setState = (e: boolean) => {
+    // e.preventDefault()
+    dispatch(utils.actions.setIsOpen(e))
+
   }
+
+useEffect(() => {
+  setState(false)
+})
+
+  
+
+  console.log(isOpen)
+  
   
   return(
  
   <Modal
-        isOpen={isOpen}
-        onRequestClose={closeModal}
+        isOpen={open}
+        onRequestClose={(e) => setIsOpen(e)}
         contentLabel="Example Modal"
         ariaHideApp={false}
+        
         
      >
       <S.ModalWrapper>
