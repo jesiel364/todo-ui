@@ -1,13 +1,13 @@
 import { Wrapper, Card, Container, List } from "./Style";
 import { ViewController } from "./viewController";
 import {Link} from 'react-router-dom'
-import NewTaskModal from '/src/components/NewTaskModal/index'
+import NewTaskModal from "../../components/NewTaskModal";
 import Bell from '/src/assets/bell.svg'
-import Header from '/src/components/Header/index'
+import Header from "../../components/Header";
 
 function Home() {
   const viewController = ViewController();
-  console.log(viewController.tasks);
+  console.log(viewController.tarefas);
 
   return (
         <Container>

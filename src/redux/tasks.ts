@@ -2,9 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import {createSlice, payloadAction} from "@reduxjs/toolkit"
 
 export interface Task {
-  id: string
-  title: string
-  completed: boolean
+  id: string | number
+  title?: string | any
+  completed?: boolean | any
+  body: string | any
 }
 
 const tasks = createSlice({
@@ -18,7 +19,7 @@ const tasks = createSlice({
     todos: (state, action: payloadAction<string>, ) => {
       return state
     },
-    addTodo: (state, action: PayloadAction<string>) => {
+    addTodo: (state, action: PayloadAction<Task>) => {
       state.push({ id: uuidv4(), body: action.payload, completed: false });
       return state;
     }, 
