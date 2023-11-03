@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import NewTaskModal from "../../components/NewTaskModal";
 import Bell from "/src/assets/bell.svg";
 import Header from "../../components/Header";
+import {useNavigate} from "react-router-dom"
 
 function Home() {
-  const { Tasks, todo, setTodo, addTask, open, setOpen, isOpen, closeModal } =  ViewController();
+  const { Tasks, todo, setTodo, addTask, open, setOpen, isOpen, closeModal, mockTasks} =  ViewController();
+  
+  const navigate = useNavigate()
 
   return (
     <Container>
@@ -14,6 +17,7 @@ function Home() {
         title="Minhas tarefas"
         iconRight={Bell}
         avatar="https://mui.com/static/images/avatar/1.jpg"
+        left_icon_click={ navigate("/")}
       />
 
       <List>
@@ -26,20 +30,10 @@ function Home() {
             </>
           }
         />
-        <form onSubmit={(e) => addTask(e)}>
-          <input
-            value={todo}
-            style={{
-              marginTop: 16,
-            }}
-            onChange={(e) => setTodo(e.currentTarget.value)}
-          />
+      
 
-          <button>Enviar</button>
-        </form>
-
-        {Tasks.map((task) => (
-          <Link key={task.id} to={"detail/" + task.body}>
+        {Tasks && Tasks !== 0 && Tasks.length > 0?( Tasks.map((task) => (
+          <Link key={task.id} to={"detail/" + task.id}>
             <div className="item">
               <p>
                 {task.body.length > 10 ? task.body.substring(0, 34) : task.body}
@@ -47,8 +41,10 @@ function Home() {
               <span>2d</span>
             </div>
           </Link>
-        ))}
+        ))) : null}
       </List>
+      
+      
 
     </Container>
   );

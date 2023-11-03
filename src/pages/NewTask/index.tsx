@@ -2,9 +2,12 @@ import * as S from "./style";
 import { ArrowBack } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import viewController from "./ViewController";
 
 const NewTask = () => {
   const navigate = useNavigate();
+
+  const { title, body, date, setTitle, setBody, setDate, handleSubmit } = viewController();
 
   return (
     <S.NewTaskContainer>
@@ -28,9 +31,12 @@ const NewTask = () => {
         </div>
       </S.Header>
 
-      <S.FormGroup>
+      <S.FormGroup onSubmit={(e:any) => handleSubmit(e)}>
         <p className="title">Nova Tarefa</p>
-        <S.TitleInput placeholder="Nome da sua tarefa" />
+        <S.TitleInput 
+        onChange={(e) => setTitle(e.currentTarget.value)} 
+        value={title}
+        placeholder="Nome da sua tarefa" />
         <p
           style={{
             marginTop: 16,
@@ -39,7 +45,10 @@ const NewTask = () => {
         >
           Descrição
         </p>
-        <S.DescriptionInput placeholder="Descreva sua tarefa" />
+        <S.DescriptionInput
+        onChange={(e) => setBody(e.currentTarget.value)} 
+        value={body}
+        placeholder="Descreva sua tarefa" />
 
         <p
           style={{
@@ -49,14 +58,20 @@ const NewTask = () => {
         >
           Data de Entrega
         </p>
-        <S.DateInput placeholder="Selecione uma data" type="date"></S.DateInput>
+        <S.DateInput 
+        onChange={(e) => setDate(e.currentTarget.value)} 
+        value={date}
+        placeholder="Selecione uma data" type="date"></S.DateInput>
 
         <Button
+          onClick={(e:any) => handleSubmit(e)}
           sx={{
-            marginTop: "16px",
             borderRadius: "10px",
             background: "#18B29A",
             color: "#FFF",
+            maxWidth: 160,
+            margin: "auto",
+            marginTop: "16px",
 
             fontFamily: "Montserrat",
             fontSize: "20px",
@@ -71,6 +86,10 @@ const NewTask = () => {
           Cadastrar
         </Button>
       </S.FormGroup>
+      
+    <p>{title}</p>
+    <p>{body}</p>
+    <p>{date}</p>
     </S.NewTaskContainer>
   );
 };

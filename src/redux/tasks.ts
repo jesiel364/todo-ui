@@ -1,15 +1,17 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import { v4 as uuidv4 } from 'uuid';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 export interface Task {
-  id: string | number
-  title?: string | any
-  completed?: boolean | any
-  body: string | any
+  id: string | number;
+  title?: string | any;
+  completed?: boolean | any;
+  body: string | any;
+  date: string | any;
+  createdAt: string | any;
 }
 
 const tasks = createSlice({
-  name: 'tasks',
+  name: "tasks",
   initialState: [
     //  {
     //     id: 1,
@@ -18,14 +20,21 @@ const tasks = createSlice({
     // },
   ] as Task[],
   reducers: {
-    todos: (state, action: PayloadAction<Task>, ) => {
-      return state
+    todos: (state, action: PayloadAction<Task>) => {
+      return state;
     },
     addTodo: (state, action: PayloadAction<any>) => {
-      state.push({ id: uuidv4(), body: action.payload, completed: false });
+      state.push({
+        id: action.payload.id || uuidv4(),
+        title: action.payload.title,
+        body: action.payload.body,
+        date: action.payload.date,
+        completed: false,
+        createdAt: action.payload.createdAt
+      });
       return state;
-    }, 
-  }
-})
+    },
+  },
+});
 
-export default tasks
+export default tasks;

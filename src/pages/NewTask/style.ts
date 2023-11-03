@@ -32,13 +32,14 @@ export const Title = styled.p`
   margin-left: 50px;
 `;
 
-export const FormGroup = styled.div`
+export const FormGroup = styled.form`
   padding: 16px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-height: 100vh;
+  margin: auto ;
 
   border-radius: 16px;
   overflow: hidden;
@@ -108,10 +109,11 @@ export const DescriptionInput = styled.textarea`
 `;
 
 export const DateInput = styled.input`
-  display: inline-flex;
+  display: flex;
   padding: 12px 10px;
   justify-content: space-between;
   align-items: center;
+  width: 87vw;
 
   border-radius: 5px;
   background: #f1f5f8;

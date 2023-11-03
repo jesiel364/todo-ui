@@ -32,7 +32,7 @@ const SideMenu = ({}: SideMenuProps) => {
               height: 76,
               width: 76,
             }}
-            src="htps://mui.com/static/images/avatar/1.jpg"
+            src={"htps://mui.com/static/images/avatar/1.jpg"}
           />
           <p className="user_name">John Doe</p>
           <p className="total_tasks">7 tarefas</p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppState, AppDispatch } from "../../redux/store";
 import utils from "../../redux/utils";
@@ -27,9 +27,31 @@ export const ViewController = () => {
     }
   };
 
-  function closeModal(e: boolean){
-    return dispatch(utils.actions.setOpen(e))
+  const [mockTasks, setMockTasks] = useState({});
+  const [error, setError] = useState();
 
+  async function getTasks() {
+    await fetch("https://625e20a26c48e8761ba572c5.mockapi.io/api/v1/tasks", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((json) => setMockTasks(json))
+      .catch((err) => setError(err));
+  }
+
+  useEffect(() => {
+    getTasks();
+    
+  }, []);
+  
+  if(mockTasks && mockTasks.length && mockTasks !== undefined > 0 ){
+      mockTasks.map(item => {
+        console.log(item)
+      })
+    }
+
+  function closeModal(e: boolean) {
+    return dispatch(utils.actions.setOpen(e));
   }
 
   return {
@@ -40,6 +62,7 @@ export const ViewController = () => {
     open,
     setOpen,
     isOpen,
-    closeModal
+    closeModal,
+    mockTasks,
   };
 };

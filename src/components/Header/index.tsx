@@ -6,6 +6,7 @@ import { AppDispatch, AppState } from "../../redux/store";
 import utils from "../../redux/utils";
 import { useDispatch, } from "react-redux";
 
+
 interface customProps {
   title?: string;
   title_align?: string;
@@ -32,6 +33,8 @@ const Header = (props: customProps) => {
     iconRight,
     ...other
   } = props;
+  
+  
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -56,7 +59,7 @@ const Header = (props: customProps) => {
         {icon_left ? (
          
             <IconButton
-              onClick={() => dispatch(utils.actions.setOpen(true))}
+              onClick={ () => icon_left_click()}
               aria-label="icon"
               // size="inherit"
             >
