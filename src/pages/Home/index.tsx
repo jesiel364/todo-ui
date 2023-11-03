@@ -6,8 +6,10 @@ import Bell from '/src/assets/bell.svg'
 import Header from "../../components/Header";
 
 function Home() {
-  const {Tasks, todo, setTodo, addTask, open, setOpen} = ViewController();
+  const {Tasks, todo, setTodo, addTask, open, setOpen, isOpen} = ViewController();
   console.log(Tasks);
+  
+  
 
   return (
         <Container>
@@ -63,7 +65,7 @@ function Home() {
 
         </List>
         
-        {/* {JSON.stringify(Tasks)} */}
+        {JSON.stringify(isOpen)}
        {/* <button onClick={e => viewController.utils.actions.isOpen()} >teste</button> */}
   
     </Container>

@@ -15,10 +15,12 @@ export const ViewController = () =>{
     const [todo, setTodo] = useState<any>()
   const dispatch: AppDispatch = useDispatch()
   const Tasks = useSelector((state: AppState) => state.tasks);
+  const isOpen = useSelector((state: AppState) => state.utils);
   
   const addTask = (e: any) => {
     e.preventDefault()
     dispatch(tasks.actions.addTodo(todo))
+    dispatch(utils.actions.setIsOpen(true))
     setTodo("")
   }
  
@@ -32,6 +34,7 @@ export const ViewController = () =>{
         addTask, 
         Tasks,
         open,
-        setOpen
+        setOpen,
+        isOpen
     }
 }

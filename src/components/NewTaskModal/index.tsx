@@ -17,15 +17,15 @@ const NewTaskModal = ({data, open, setIsOpen, text}:ModalProps) =>{
   const isOpen = useSelector((state: AppState) => state.utils);
 
 
-  const setState = (e: boolean) => {
-    // e.preventDefault()
-    dispatch(utils.actions.setIsOpen(e))
+  // const setState = (e: boolean) => {
+  //   // e.preventDefault()
+  //   dispatch(utils.actions.setIsOpen(e))
 
-  }
+  // }
 
-useEffect(() => {
-  setState(false)
-})
+// useEffect(() => {
+//   setState(false)
+// })
 
   
 

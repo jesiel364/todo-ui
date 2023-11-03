@@ -1,23 +1,28 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 
+
 export interface Util {
-  loading: boolean
   isOpen: boolean
 }
 
+let op = false
+
+
 const utils = createSlice({
   name: 'utils',
-  initialState: true,
+  initialState: {
+    isOpen: op
+  } as Util,
   reducers: {
     isOpen: (state, action: PayloadAction<any>, ) => {
 
       return state
     },
-    setIsOpen: (state, action: PayloadAction<any>,) => {
+    setIsOpen: (state, action: PayloadAction<any> ) =>{
       state: action.payload
+      return state
     }
-    
-  }
+}
 })
 
 export default utils
