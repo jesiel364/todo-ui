@@ -1,37 +1,31 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import {Link} from 'react-router-dom'
-import Person4Icon from '@mui/icons-material/Person4';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import HomeIcon from '@mui/icons-material/Home';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import Paper from '@mui/material/Paper';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import {IconButton} from '@mui/material'
-import Avatar from '@mui/material/Avatar';
-import {BottomBar} from './style'
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
+import Person4Icon from "@mui/icons-material/Person4";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import HomeIcon from "@mui/icons-material/Home";
+import Paper from "@mui/material/Paper";
+import { IconButton } from "@mui/material";
+import { BottomBar } from "./style";
+import { AppDispatch } from "../../redux/store";
+import utils from "../../redux/utils";
+import { useDispatch } from "react-redux";
 
 function refreshMessages(): MessageExample[] {
-  const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
+  const getRandomInt = (max: number) =>
+    Math.floor(Math.random() * Math.floor(max));
 
   return Array.from(new Array(50)).map(
-    () => messageExamples[getRandomInt(messageExamples.length)],
+    () => messageExamples[getRandomInt(messageExamples.length)]
   );
 }
 
 interface BottomNavProps {
-  addTodoFunc: any
+  addTodoFunc: any;
 }
 
-export default function FixedBottomNavigation({addTodoFunc}: BottomNavProps) {
+export default function FixedBottomNavigation({ addTodoFunc }: BottomNavProps) {
+  const dispatch: AppDispatch = useDispatch()
   const [value, setValue] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
   const [messages, setMessages] = React.useState(() => refreshMessages());
@@ -42,65 +36,74 @@ export default function FixedBottomNavigation({addTodoFunc}: BottomNavProps) {
   }, [value, setMessages]);
 
   return (
-    <Box sx={{ pb: 7}} ref={ref}>
-       
-     {value}
-     
-     
-     
-      <Paper sx={{ 
-          position: 'fixed', 
-          bottom: 0, left: 0, right: 0,
+    <Box sx={{ pb: 7 }} ref={ref}>
+      <Paper
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
           borderTopLeftRadius: 32,
           borderTopRightRadius: 32,
+        }}
+        elevation={3}
+      >
+        <BottomBar>
+          <Link to="/">
+            <IconButton
+              onClick={(event) => {
+                setValue(0);
+              }}
+              aria-label="icon"
+              size="inherit"
+            >
+              <HomeIcon
+                sx={
+                  value === 0
+                    ? {
+                        backgroundColor: "#eee",
+                      }
+                    : null
+                }
+              />
+            </IconButton>
+          </Link>
+          <Link to='/new'>
+            <IconButton
+              onClick={(event) => {
+                setValue(1);
+              }}
+              aria-label="icon"
+              size="inherit"
+            >
+              <AddBoxIcon
+                sx={
+                  value === 1
+                    ? {
+                        backgroundColor: "#eee",
+                      }
+                    : null
+                }
+              />
+            </IconButton>
+            </Link>
           
-        
-      }} 
-          elevation={3}>
-      <BottomBar>
-       <Link to="/">
-     <IconButton   onClick={(event) => {
-            setValue(0);
-          }} aria-label="icon" size="inherit">
-  <HomeIcon sx={
-     value === 0 ? 
-       {
-         backgroundColor: "#eee",
-         
-        
-       } : null
-     } />
+          <IconButton
+            onClick={(event) => {
+            }}
+            aria-label="icon"
+          >
+            <Person4Icon
+              sx={
+                value === 2
+                  ? {
+                      backgroundColor: "#eee",
+                    }
+                  : null
+              }
+            />
           </IconButton>
-          </Link>
-     <Link to="/new">
-     <IconButton  onClick={(event) => {
-            setValue(1);
-          }} aria-label="icon" size="inherit">
-  <AddBoxIcon sx={
-     value === 1 ? 
-       {
-         backgroundColor: "#eee",
-        
-       } : null
-     } />
-          </IconButton>
-          </Link>
-     <IconButton
-     onClick={(event) => {
-            addTodoFunc()
-          }} aria-label="icon" >
-  <Person4Icon sx={
-     value === 2 ? 
-       {
-         backgroundColor: "#eee",
-        
-       } : null
-     }  />
-          </IconButton>
-
-     </BottomBar>
-     
-        
+        </BottomBar>
       </Paper>
     </Box>
   );
@@ -114,42 +117,45 @@ interface MessageExample {
 
 const messageExamples: readonly MessageExample[] = [
   {
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-    person: '/static/images/avatar/5.jpg',
+    primary: "Brunch this week?",
+    secondary:
+      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    person: "/static/images/avatar/5.jpg",
   },
   {
-    primary: 'Birthday Gift',
+    primary: "Birthday Gift",
     secondary: `Do you have a suggestion for a good present for John on his work
       anniversary. I am really confused & would love your thoughts on it.`,
-    person: '/static/images/avatar/1.jpg',
+    person: "/static/images/avatar/1.jpg",
   },
   {
-    primary: 'Recipe to try',
-    secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
-    person: '/static/images/avatar/2.jpg',
+    primary: "Recipe to try",
+    secondary:
+      "I am try out this new BBQ recipe, I think this might be amazing",
+    person: "/static/images/avatar/2.jpg",
   },
   {
-    primary: 'Yes!',
-    secondary: 'I have the tickets to the ReactConf for this year.',
-    person: '/static/images/avatar/3.jpg',
+    primary: "Yes!",
+    secondary: "I have the tickets to the ReactConf for this year.",
+    person: "/static/images/avatar/3.jpg",
   },
   {
     primary: "Doctor's Appointment",
-    secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
-    person: '/static/images/avatar/4.jpg',
+    secondary:
+      "My appointment for the doctor was rescheduled for next Saturday.",
+    person: "/static/images/avatar/4.jpg",
   },
   {
-    primary: 'Discussion',
+    primary: "Discussion",
     secondary: `Menus that are generated by the bottom app bar (such as a bottom
       navigation drawer or overflow menu) open as bottom sheets at a higher elevation
       than the bar.`,
-    person: '/static/images/avatar/5.jpg',
+    person: "/static/images/avatar/5.jpg",
   },
   {
-    primary: 'Summer BBQ',
+    primary: "Summer BBQ",
     secondary: `Who wants to have a cookout this weekend? I just got some furniture
       for my backyard and would love to fire up the grill.`,
-    person: '/static/images/avatar/1.jpg',
+    person: "/static/images/avatar/1.jpg",
   },
 ];

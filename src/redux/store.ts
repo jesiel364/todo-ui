@@ -3,8 +3,9 @@ import tasks from './tasks'
 import utils from './utils'
 
 const rootRecucer = combineReducers({
-  tasks: tasks.reducer,
   utils: utils.reducer,
+  tasks: tasks.reducer,
+  
 })
 
 const store = configureStore({

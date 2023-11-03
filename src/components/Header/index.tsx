@@ -1,7 +1,10 @@
 import { HeaderStyle } from "./Style";
-import Bell from "/src/assets/bell.svg";
-import { Avatar, TextField, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+// import Bell from "/src/assets/bell.svg";
+import { Avatar, IconButton} from "@mui/material";
+// import { Link } from "react-router-dom";
+import { AppDispatch, AppState } from "../../redux/store";
+import utils from "../../redux/utils";
+import { useDispatch, } from "react-redux";
 
 interface customProps {
   title?: string;
@@ -12,13 +15,13 @@ interface customProps {
   icon_left_click?: any;
   icon_left_link?: any;
   title_style?: any;
-  customStyle?: any
+  customStyle?: any;
 }
 
 const Header = (props: customProps) => {
   const {
     title,
-    
+
     avatar,
     icon_left,
     title_align,
@@ -30,17 +33,36 @@ const Header = (props: customProps) => {
     ...other
   } = props;
 
+  const dispatch: AppDispatch = useDispatch();
+
   return (
-    <HeaderStyle style={customStyle }>
+    <HeaderStyle style={customStyle}>
       <div className="top">
+
+        <IconButton
+              onClick={() => dispatch(utils.actions.setOpen(true))}
+              aria-label="icon"
+              size="inherit"
+              sx={{
+                margin: 0,
+                padding:0
+              }}
+            >
+
         {avatar ? <Avatar alt="Remy Sharp" src={avatar} /> : null}
+        </IconButton>
+
 
         {icon_left ? (
-        <Link to={icon_left_link}>
-          <IconButton onClick={icon_left_click} aria-label="icon" size="inherit">
-            {icon_left}
-          </IconButton>
-        </Link>
+         
+            <IconButton
+              onClick={() => dispatch(utils.actions.setOpen(true))}
+              aria-label="icon"
+              // size="inherit"
+            >
+              {icon_left}
+            </IconButton>
+ 
         ) : null}
         <img src={iconRight} />
       </div>

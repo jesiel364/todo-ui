@@ -1,28 +1,28 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
+import { AppDispatch } from "./store";
 
 export interface Util {
-  isOpen: boolean
+  open: boolean;
 }
-
-let op = false
-
 
 const utils = createSlice({
-  name: 'utils',
+  name: "utils",
   initialState: {
-    isOpen: op
+    open: false,
   } as Util,
   reducers: {
-    isOpen: (state, action: PayloadAction<any>, ) => {
-
-      return state
+    isOpen: (state, action: PayloadAction<Util>) => {
+      return state;
     },
-    setIsOpen: (state, action: PayloadAction<any> ) =>{
-      state: action.payload
-      return state
-    }
-}
-})
+    setOpen: (state, action: PayloadAction<boolean>) => {
+      console.log(action.payload)
+      return {
+        ...state,
+        open: action.payload,
+      };
+    },
+  },
+});
 
-export default utils
+export default utils;
